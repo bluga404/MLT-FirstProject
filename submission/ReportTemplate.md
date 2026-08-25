@@ -246,7 +246,7 @@ Untuk model **AdaBoost** (model baseline dengan performa terbaik, yaitu RMSE ter
 | Parameter | Sebelum Tuning (Default) | Sesudah Tuning (Best) |
 |---|---|---|
 | `n_estimators` | 50 | 50 |
-| `learning_rate` | 1.0 | 0.1 |
+| `learning_rate` | 1.0 | 0.1 | 
 | `loss` | 'linear' | 'linear' |
 
 **Perbandingan Performa Sebelum dan Sesudah Tuning:**
