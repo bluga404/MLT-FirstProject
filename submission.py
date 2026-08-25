@@ -4,9 +4,9 @@
 # # Proyek Machine Learning: Coffee Sales Forecasting dan Customer Purchase Pattern Analysis
 # 
 # ---
-# **Nama:** [Nama Anda]  
-# **Email:** [Email Anda]  
-# **ID Dicoding:** [Username Dicoding Anda]
+# **Nama:** Walker Valentinus Simanjuntak  
+# **Email:** walkervalentinussimanjuntak@gmail.com  
+# **ID Dicoding:** walkervs
 # 
 # ---
 # 
@@ -130,6 +130,32 @@ else:
 print()
 print("=== Statistik Deskriptif (money) ===")
 display(df_raw[['money']].describe())
+
+
+# In[4]:
+
+
+# Deteksi Outlier pada variabel 'money' menggunakan metode IQR
+Q1 = df_raw['money'].quantile(0.25)
+Q3 = df_raw['money'].quantile(0.75)
+IQR = Q3 - Q1
+lower_bound = Q1 - 1.5 * IQR
+upper_bound = Q3 + 1.5 * IQR
+
+outliers = df_raw[(df_raw['money'] < lower_bound) | (df_raw['money'] > upper_bound)]
+print(f"=== Deteksi Outlier (money) ===")
+print(f"Q1: {Q1:.2f}, Q3: {Q3:.2f}, IQR: {IQR:.2f}")
+print(f"Batas bawah: {lower_bound:.2f}")
+print(f"Batas atas : {upper_bound:.2f}")
+print(f"Jumlah outlier: {len(outliers)} ({len(outliers)/len(df_raw)*100:.2f}%)")
+
+# Visualisasi boxplot
+fig, ax = plt.subplots(figsize=(8, 3))
+ax.boxplot(df_raw['money'], vert=False)
+ax.set_title('Boxplot — Distribusi Nilai Transaksi (money)', fontweight='bold')
+ax.set_xlabel('Nilai Transaksi')
+plt.tight_layout()
+plt.show()
 
 
 # ## 4. Exploratory Data Analysis (EDA)
